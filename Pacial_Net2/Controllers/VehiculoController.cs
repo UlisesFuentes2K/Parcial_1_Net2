@@ -1,12 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
-using Microsoft.EntityFrameworkCore;
-using NuGet.Protocol;
-using Pacial_Net2.Data;
 using Pacial_Net2.Models;
 using Pacial_Net2.Repository.Interface;
 
@@ -33,6 +26,7 @@ namespace Pacial_Net2.Controllers
         }
 
         // GET: Vehiculo/Create
+        [HttpGet]
         public IActionResult Create()
         {
             var marca = _marca.GetMarca();
