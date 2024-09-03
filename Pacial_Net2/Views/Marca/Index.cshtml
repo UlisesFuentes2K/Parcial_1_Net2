@@ -1,0 +1,31 @@
+﻿@model IEnumerable<Pacial_Net2.Models.Marca>
+
+@{
+    ViewData["Title"] = "Marca de Vehículo";
+}   
+
+<h1>@ViewData["Title"]</h1>
+<br />
+<p>
+    <a class="button" -controller="Marca" asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>Nombre</th>
+            <th>Acciones</th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in ViewBag.Marca) 
+{
+        <tr>
+            <td>@item.nombre</td>
+            <td>
+                <a asp-controller="Marca" asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
+                <a asp-controller="Marca" asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
