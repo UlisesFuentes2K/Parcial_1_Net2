@@ -1,0 +1,47 @@
+﻿@model Pacial_Net2.Models.Vehiculo
+
+@{
+    ViewData["Title"] = "Nuevo Vehículo";
+}
+
+<h1>@ViewData["Title"]</h1>
+<hr />
+<br />
+<div>
+    <a asp-action="Index" class="btn btn-primary">Regresar</a>
+</div>
+<br />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Save">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="modelo" class="control-label"> Modelo</label>
+                <input asp-for="modelo" class="form-control" />
+                <span asp-validation-for="modelo" class="text-danger"></span>
+            </div><br />
+            <div class="form-group">
+                <label asp-for="anio" class="control-label"> Año</label>
+                <input asp-for="anio" class="form-control" />
+                <span asp-validation-for="anio" class="text-danger"></span>
+            </div><br />
+            <div class="form-group">
+                <label asp-for="cantidadPuertas" class="control-label"> Cantidad de puertas</label>
+                <input asp-for="cantidadPuertas" class="form-control" />
+                <span asp-validation-for="cantidadPuertas" class="text-danger"></span>
+            </div><br />
+            <div class="form-group">
+                <label asp-for="IdMArca" class="control-label"> Marca</label>
+                <select asp-for="IdMArca" class="form-control" asp-items="ViewBag.Marca"></select>
+                <span asp-validation-for="IdMArca" class="text-danger"></span>
+            </div><br />
+            <div class="form-group">
+                <input type="submit" value="Guardar" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

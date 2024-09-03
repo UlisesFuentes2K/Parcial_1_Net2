@@ -1,4 +1,5 @@
-﻿using Pacial_Net2.Data;
+﻿using Microsoft.EntityFrameworkCore;
+using Pacial_Net2.Data;
 using Pacial_Net2.Models;
 using Pacial_Net2.Repository.Interface;
 
@@ -22,22 +23,46 @@ namespace Pacial_Net2.Repository.Manager
 
         public void DeleteVehiculo(int id)
         {
-            _context.Remove(id);
-            _context.SaveChanges();
+            var vehiculo = _context.vehiculos.Where(v => v.Id == id).FirstOrDefault();
+            if (vehiculo != null)
+            {
+                _context.Remove(vehiculo);
+                _context.SaveChanges();
+            }
+            else
+            {
+                throw new NotImplementedException();
+            }
+        }
+
+        public Vehiculo EditVehiculo(int id)
+        {
+            var vehiculo = _context.vehiculos.Where(v => v.Id == id).FirstOrDefault();
+            return vehiculo;
             throw new NotImplementedException();
         }
 
         public List<Vehiculo> GetVehiculo()
         {
-            return _context.vehiculos.ToList();
+            return _context.vehiculos.Include(v => v.Marca).ToList();
             throw new NotImplementedException();
         }
 
         public Vehiculo UpdateVehiculo(Vehiculo vehiculo)
         {
-            _context.Update(vehiculo); 
-            _context.SaveChanges(true);
-            return vehiculo;
+            var vehiculos = _context.vehiculos.Where(v => v.Id == vehiculo.Id).FirstOrDefault();
+            if(vehiculos != null)
+            {
+                vehiculos.modelo = vehiculo.modelo;
+                vehiculos.IdMArca = vehiculo.IdMArca;
+                vehiculos.anio = vehiculo.anio;
+                vehiculos.cantidadPuertas = vehiculo.cantidadPuertas;
+
+                _context.Update(vehiculos);
+                _context.SaveChanges(true);
+
+                return vehiculo;
+            }
             throw new NotImplementedException();
         }
     }

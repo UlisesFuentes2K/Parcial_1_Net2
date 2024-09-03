@@ -7,6 +7,7 @@ namespace Pacial_Net2.Repository.Interface
         Vehiculo AddVehiculo(Vehiculo vehiculo);
         Vehiculo UpdateVehiculo(Vehiculo vehiculo);
         void DeleteVehiculo(int id);
+        Vehiculo EditVehiculo(int id);
         List<Vehiculo> GetVehiculo();
     }
 }

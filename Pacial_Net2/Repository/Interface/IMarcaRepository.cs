@@ -6,8 +6,7 @@ namespace Pacial_Net2.Repository.Interface
     {
         Marca AddMarca(Marca marca);
         Marca UpdateMarca(Marca marca);
-        Marca DeleteMarca(int id);
-        void ConfirmedDeleteMarca(Marca marca);
+        void DeleteMarca(int id);
         Marca EditMarca(int id);
         List<Marca> GetMarca();
     }

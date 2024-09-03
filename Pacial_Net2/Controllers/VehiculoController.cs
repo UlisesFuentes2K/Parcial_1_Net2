@@ -12,77 +12,85 @@ using Pacial_Net2.Repository.Interface;
 
 namespace Pacial_Net2.Controllers
 {
-    public class MarcaController : Controller
+    public class VehiculoController : Controller
     {
+        private readonly IVehiculoRepository _vehiculo;
         private readonly IMarcaRepository _marca;
-        private readonly ILogger<MarcaController> _logger;
+        private readonly ILogger<VehiculoController> _logger;
 
-        public MarcaController(ILogger<MarcaController> logger, IMarcaRepository marca)
+        public VehiculoController(ILogger<VehiculoController> logger, IVehiculoRepository vehiculo, IMarcaRepository marca)
         {
+            _vehiculo = vehiculo;
             _marca = marca;
             _logger = logger;
         }
 
-        // GET: Marca
+        // GET: Vehiculo
         public IActionResult Index()
         {
-            ViewBag.Marca = _marca.GetMarca();
+            ViewBag.Vehiculo = _vehiculo.GetVehiculo();
             return View();
         }
 
-        // GET: Marca/Create
+        // GET: Vehiculo/Create
         public IActionResult Create()
         {
+            var marca = _marca.GetMarca();
+            ViewBag.Marca = new SelectList(marca, "Id", "nombre");
+
             return View();
         }
 
-        // POST: Marca/Save
+        // POST: Vehiculo/Save
         [HttpPost]
-        public IActionResult Save(Marca marca)
+        public IActionResult Save(Vehiculo vehiculo)
         {
             if (ModelState.IsValid)
             {
-                _marca.AddMarca(marca);
+                _vehiculo.AddVehiculo(vehiculo);
                 return RedirectToAction(nameof(Index));
             }
-            return View(marca);
+            return View(vehiculo);
         }
 
-        //GET: Marca/Edit/
+        //GET: Vehiculo/Edit/
         [HttpGet]
         public IActionResult Edit(int id)
         {
-            var marca = _marca.EditMarca(id);
+            var vehiculo = _vehiculo.EditVehiculo(id);
 
-            if (marca == null)
+            var marcas = _marca.GetMarca(); 
+            ViewBag.Marca = new SelectList(marcas, "Id", "nombre");
+
+            if (vehiculo == null)
             {
                 return NotFound();
             }
-            return View(marca);
+            return View(vehiculo);
         }
 
-        //// POST: Marca/Update/
+        //// POST: Vehiculo/Update/
         [HttpPost]
-        public ActionResult Update(int id, Marca marca)
+        public ActionResult Update(int id, Vehiculo vehiculo)
         {
-            if (id != marca.Id)
+            if (id != vehiculo.Id)
             {
                 return NotFound();
             }
 
             if (ModelState.IsValid)
             {
-                _marca.UpdateMarca(marca);
+                _vehiculo.UpdateVehiculo(vehiculo);
                 return RedirectToAction(nameof(Index));
             }
-            return View(marca);
+            return View(vehiculo);
         }
 
-        // GET: Marca/Delete/
+        // GET: Vehiculo/Delete/
         [HttpDelete]
         public IActionResult Delete(int id)
         {
-             _marca.DeleteMarca(id);
+             _vehiculo.DeleteVehiculo(id);
             return RedirectToAction(nameof(Index));
 
         }

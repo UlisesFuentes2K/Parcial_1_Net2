@@ -20,20 +20,19 @@ namespace Pacial_Net2.Repository.Manager
             throw new NotImplementedException();
         }
 
-        public Marca DeleteMarca(int id)
+        public void DeleteMarca(int id)
         {
             var marca = _context.marcas.Find(id);
 
-            return marca;
-
-            throw new NotImplementedException();
-        }
-        public void ConfirmedDeleteMarca(Marca marca)
-        {
-            _context.Remove(marca);
-            _context.SaveChanges();
-
-            throw new NotImplementedException();
+            if(marca != null)
+            {
+                _context.Remove(marca);
+                _context.SaveChanges();
+            }
+            else
+            {
+                throw new NotImplementedException();
+            }
         }
 
         public List<Marca> GetMarca()

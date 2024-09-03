@@ -1,28 +1,34 @@
-﻿@model IEnumerable<Pacial_Net2.Models.Marca>
+﻿@model IEnumerable<Pacial_Net2.Models.Vehiculo>
 
 @{
-    ViewData["Title"] = "Marca de Vehículo";
+    ViewData["Title"] = "Vehiculos";
 }   
 
 <h1>@ViewData["Title"]</h1>
 <br />
 <p>
-    <a class="btn btn-primary" -controller="Marca" asp-action="Create">Agregar</a>
+    <a class="btn btn-primary" -controller="Vehiculo" asp-action="Create">Agregar</a>
 </p>
 <table class="table">
     <thead>
         <tr>
-            <th>Nombre</th>
+            <th>Modelo</th>
+            <th>Año</th>
+            <th>Cantidad de puertas</th>
+            <th>Marca</th>
             <th>Acciones</th>
         </tr>
     </thead>
     <tbody>
-@foreach (var item in ViewBag.Marca) 
+@foreach (var item in ViewBag.Vehiculo) 
 {
         <tr>
-            <td>@item.nombre</td> <br />
+            <td>@item.modelo</td>
+            <td>@item.anio</td> 
+            <td>@item.cantidadPuertas</td>
+            <td>@item.Marca.nombre</td>
             <td>
-                <a class="btn btn-warning" asp-controller="Marca" asp-action="Edit" asp-route-id="@item.Id">Editar</a> |
+                <a class="btn btn-warning" asp-controller="Vehiculo" asp-action="Edit" asp-route-id="@item.Id">Editar</a> |
                 <a class="btn btn-danger delete-btn" href="#" data-id="@item.Id">Eliminar</a>
             </td>
         </tr>
@@ -45,7 +51,7 @@
                     confirmButtonText: 'Confirmar'
                 }).then((resultado) => {
                     if (resultado.isConfirmed) {
-                        fetch(`/Marca/Delete/${id}`, {
+                        fetch(`/Vehiculo/Delete/${id}`, {
                             method: 'DELETE',
                             headers: {
                                 'Content-Type': 'application/json'
@@ -54,7 +60,7 @@
                             if (response.ok) {
                                 window.location.reload();
                             } else {
-                                Swal.fire('Error', 'No se pudo eliminar la marca.', 'error');
+                                Swal.fire('Error', 'No se pudo eliminar la vehiculo.', 'error');
                             }
                         });
                     }
