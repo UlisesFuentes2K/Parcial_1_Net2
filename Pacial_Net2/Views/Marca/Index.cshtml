@@ -9,11 +9,11 @@
 <p>
     <a class="btn btn-primary" -controller="Marca" asp-action="Create">Agregar</a>
 </p>
-<table class="table">
+<table class="table table-bordered" id="myTable" style="text-align: center;">
     <thead>
         <tr>
-            <th>Nombre</th>
-            <th>Acciones</th>
+            <th style="text-align: center;">Nombre</th>
+            <th style="text-align: center;">Acciones</th>
         </tr>
     </thead>
     <tbody>
@@ -60,6 +60,11 @@
                     }
                 });
             });
+        });
+    </script>
+    <script>
+        let table = new DataTable('#myTable', {
+            scrollX: true
         });
     </script>
 }

@@ -5,8 +5,8 @@ namespace Pacial_Net2.Repository.Interface
     public interface IVentaRepository
     {
         Venta AddVenta(Venta venta);
-        Venta UpdateVenta(Venta venta);
-        void DeleteVenta(int id);
+        List<Venta> DetalleVenta(int id);
+        List<Vehiculo> FiltroModelos(int id);
         List<Venta> GetVenta();
     }
 }

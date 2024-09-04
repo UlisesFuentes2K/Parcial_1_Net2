@@ -1,0 +1,43 @@
+﻿@model IEnumerable<Pacial_Net2.Models.Venta>
+
+@{
+    ViewData["Title"] = "Ventas";
+}   
+
+<h1>@ViewData["Title"]</h1>
+<br />
+<p>
+    <a class="btn btn-primary" -controller="Venta" asp-action="Create">Nueva venta</a>
+</p>
+<table class="table table-bordered" id="myTable" style="text-align: center;">
+    <thead>
+        <tr>
+            <th style="text-align: center;">Modelo de vehículo</th>
+            <th style="text-align: center;">Cantidad</th>
+            <th style="text-align: center;">Total venta</th>
+            <th style="text-align: center;">Acciones</th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in ViewBag.Venta) 
+{
+        <tr>
+            <td>@item.Vehiculo.modelo</td>
+            <td>@item.cantidad</td> 
+            <td><span>$</span>@item.totalVenta</td>
+            <td>
+                <a class="btn btn-warning" asp-controller="Venta" asp-action="Detalle" asp-route-id="@item.Id">Detalles</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
+
+@section scripts
+{
+    <script>
+        let table = new DataTable('#myTable', {
+            scrollX: true
+        });
+    </script>
+}

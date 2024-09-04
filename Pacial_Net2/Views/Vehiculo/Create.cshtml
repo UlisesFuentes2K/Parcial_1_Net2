@@ -32,8 +32,24 @@
             </div><br />
             <div class="form-group">
                 <label asp-for="IdMArca" class="control-label"> Marca</label>
-                <select asp-for="IdMArca" class="form-control" asp-items="ViewBag.Marca"></select>
+                <select asp-for="IdMArca" class="form-control" asp-items="ViewBag.Marca">
+                    <option value="">Seleccione una marca</option>
+                </select>
                 <span asp-validation-for="IdMArca" class="text-danger"></span>
+            </div><br />
+            <div class="form-group">
+                <label asp-for="precio" class="control-label"> Precio</label>
+                <input asp-for="precio" class="form-control" />
+                <span asp-validation-for="precio" class="text-danger"></span>
+            </div><br />
+            <div class="form-group">
+                <label asp-for="isActivo" class="control-label">Estado</label>
+                <select asp-for="isActivo" class="form-control">
+                    <option value="">Seleccione un estado</option>
+                    <option value="true">Disponible</option>
+                    <option value="false">Agotado</option>
+                </select>
+                <span asp-validation-for="cantidadPuertas" class="text-danger"></span>
             </div><br />
             <div class="form-group">
                 <input type="submit" value="Guardar" class="btn btn-primary" />

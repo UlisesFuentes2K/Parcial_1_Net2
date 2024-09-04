@@ -56,6 +56,8 @@ namespace Pacial_Net2.Repository.Manager
                 vehiculos.modelo = vehiculo.modelo;
                 vehiculos.IdMArca = vehiculo.IdMArca;
                 vehiculos.anio = vehiculo.anio;
+                vehiculos.isActivo = vehiculo.isActivo;
+                vehiculos.precio = vehiculo.precio;
                 vehiculos.cantidadPuertas = vehiculo.cantidadPuertas;
 
                 _context.Update(vehiculos);

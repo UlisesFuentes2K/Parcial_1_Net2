@@ -9,14 +9,16 @@
 <p>
     <a class="btn btn-primary" -controller="Vehiculo" asp-action="Create">Agregar</a>
 </p>
-<table class="table">
+<table class="table table-bordered" id="myTable" style="text-align: center;">
     <thead>
         <tr>
-            <th>Modelo</th>
-            <th>Año</th>
-            <th>Cantidad de puertas</th>
-            <th>Marca</th>
-            <th>Acciones</th>
+            <th style="text-align: center;">Modelo</th>
+            <th style="text-align: center;">Año</th>
+            <th style="text-align: center;">Cantidad de puertas</th>
+            <th style="text-align: center;">Marca</th>
+            <th style="text-align: center;">Precio</th>
+            <th style="text-align: center;">Estado</th>
+            <th style="text-align: center;">Acciones</th>
         </tr>
     </thead>
     <tbody>
@@ -27,6 +29,18 @@
             <td>@item.anio</td> 
             <td>@item.cantidadPuertas</td>
             <td>@item.Marca.nombre</td>
+            <td><span>$</span>@item.precio</td>
+            <td>
+                @if(item.isActivo)
+                {
+                    <text>Disponible</text>
+                }
+                else
+                {
+                    <text>Agotado</text>
+                }
+
+             </td>
             <td>
                 <a class="btn btn-warning" asp-controller="Vehiculo" asp-action="Edit" asp-route-id="@item.Id">Editar</a> |
                 <a class="btn btn-danger delete-btn" href="#" data-id="@item.Id">Eliminar</a>
@@ -66,6 +80,11 @@
                     }
                 });
             });
+        });
+    </script>
+    <script>
+        let table = new DataTable('#myTable', {
+            scrollX: true
         });
     </script>
 }

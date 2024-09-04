@@ -63,7 +63,7 @@ namespace Pacial_Net2.Controllers
             return View(vehiculo);
         }
 
-        //// POST: Vehiculo/Update/
+        // POST: Vehiculo/Update/
         [HttpPost]
         public ActionResult Update(int id, Vehiculo vehiculo)
         {
